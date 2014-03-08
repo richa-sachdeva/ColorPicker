@@ -18,7 +18,7 @@ public class ColorPick implements ActionListener{
 	private static JPanel titlePanel, infoPanel;
 	private static ColorGamePanel gamePanel;
 	
-	private static JLabel titleLabel, gameLabel, moveLabel, gameStatus, moveCount;
+	private static JLabel titleLabel, gameLabel, moveLabel, gameStatus, moveCount, gameDesc, gameDesc2, gameDesc3;
 
 	private static JButton restart, pause;
 
@@ -50,13 +50,24 @@ public class ColorPick implements ActionListener{
 		mainFrame.setBackground(Color.black);
 		
 		titlePanel = new JPanel();
-		titlePanel.setLayout(new GridLayout());
+		titlePanel.setLayout(new GridLayout(0, 1));
 		titlePanel.setBackground(Color.white);
 		
 		titleLabel = new JLabel(" Game: Color Pick ");
 		titleLabel.setFont(new Font("Snap ITC", Font.ITALIC, 18));
 		
 		titlePanel.add(titleLabel);
+		
+		gameDesc = new JLabel("  Click the colors at the bottom to 'fill' the top left pixel (and others like it)");
+		gameDesc2 = new JLabel(" with the same color. You have a limited number of moves to paint the board");
+		gameDesc3 = new JLabel(" and win the game. Enjoy!!");
+		gameDesc.setFont(new Font("Sylfaen", Font.ITALIC, 14));
+		gameDesc2.setFont(new Font("Sylfaen", Font.ITALIC, 14));
+		gameDesc3.setFont(new Font("Sylfaen", Font.ITALIC, 14));	
+		
+		titlePanel.add(gameDesc);
+		titlePanel.add(gameDesc2);
+		titlePanel.add(gameDesc3);
 		
 		mainFrame.add(titlePanel, BorderLayout.NORTH);
 		

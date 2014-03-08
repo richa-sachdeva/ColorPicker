@@ -9,8 +9,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.List;
-import java.awt.Rectangle;
-
 import javax.swing.JPanel;
 
 class ColorGamePanel extends JPanel implements MouseListener {
@@ -45,7 +43,7 @@ class ColorGamePanel extends JPanel implements MouseListener {
 	private void drawColorBar() {
 		colorBar = new ArrayList<ColorRectangle>();
 		double x = 75;
-		double y = 450;
+		double y = 400;
 		double spacing = 10;
 		
 		for(ColorEnum color : ColorEnum.values()){
@@ -94,7 +92,7 @@ class ColorGamePanel extends JPanel implements MouseListener {
 		paintGame = true;
 		playableGrid = new ArrayList<ColorRectangle>();
 		double x;
-		double y = 50;
+		double y = 25;
 		ColorEnum[] c = ColorEnum.values();
 		int colorIndex;
 		int Min = 0;
@@ -114,7 +112,11 @@ class ColorGamePanel extends JPanel implements MouseListener {
 		repaint();
 		colorGrid = new ArrayList<Integer>();
 		colorGrid.add(0);
-
+		
+		moveCount = MOVES;
+		
+		ColorPick.setMoveLabel(MOVES);
+		ColorPick.setGameStatus(GameStatus.INIT.getValue());
 		SetPlayableList();	
 	}
 
@@ -126,7 +128,7 @@ class ColorGamePanel extends JPanel implements MouseListener {
 		for(ColorRectangle cr : playableGrid){
 			int curr = playableGrid.indexOf(cr);
 			if (colorGrid.contains(curr)){
-				System.out.println("in curr : "+curr);
+	//			System.out.println("in curr : "+curr);
 			
 				int right = curr + 1; right = checkRange(right);
 				int bottom = curr + 10; bottom = checkRange(bottom);
@@ -149,7 +151,7 @@ class ColorGamePanel extends JPanel implements MouseListener {
 //				System.out.println("after: "+fwd + " " +down + " "+bkwd+ " "+upwd);
 			}
 		}
-		System.out.println("init grid count" + colorGrid.size());		
+//		System.out.println("init grid count" + colorGrid.size());		
 	}
 
 	private int checkRange(int right) {
@@ -195,10 +197,10 @@ class ColorGamePanel extends JPanel implements MouseListener {
 			if(r.contains(p)){
 				System.out.println("inside: "+ cr.getColor().toString());
 				SetMoveLabel(cr.getColor());
-				SetGameStatusLabel();
+			
 				SetColor(cr.getColor());
 				SetPlayableList();
-				
+				SetGameStatusLabel();
 				repaint();	
 			}
 		}
